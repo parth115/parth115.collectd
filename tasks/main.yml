@@ -1,0 +1,11 @@
+---
+- name: Install Collectd
+  apt: 
+     name : collectd
+     install_recommends : "{{ collectd_install_recommends }}"
+     state : latest
+
+- name: Configure Collectd
+  template: src=collectd.conf.j2 dest=/etc/collectd/collectd.conf
+  notify:
+    - Restart Collectd
